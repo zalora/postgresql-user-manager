@@ -1,0 +1,6 @@
+/.cabal-sandbox/
+/cabal.sandbox.config
+/dist/
+credentials.cfg
+psql.cnf
+.DS_Store

@@ -1,0 +1,23 @@
+user1:
+    - schemaPermission: "USAGE"
+      tablePermission: "ALL"
+      viewPermission: "ALL"
+      schemaPattern: "%"
+      tablePattern: "%"
+      viewPattern: "%"
+
+user2:
+    - schemaPermission: "USAGE"
+      tablePermission: "SELECT"
+      viewPermission: "SELECT"
+      schemaPattern: "schema2"
+      tablePattern: "%"
+      viewPattern: "%"
+
+user3:
+    - schemaPermission: "USAGE"
+      tablePermission: "SELECT"
+      viewPermission: "SELECT"
+      schemaPattern: "schema3"
+      tablePattern: "%random%pattern%"
+      viewPattern: ""

@@ -5,7 +5,7 @@ To *functionally* manage User Privileges for PostgreSQL Database.
 
 Allow administrator to easily:
 
-    + Refresh all user privileges specified in ./config/privileges.cfg file.
+    + Manage all user privileges specified in ./config/privileges.cfg file.
     + Transfer all ownership of one User to another.
     + Revoke all privileges of any user and / or Drop the user himself.
 
@@ -23,15 +23,16 @@ Allow administrator to easily:
         - credentials.cfg: all user credentials that need to be managed
         - db.cfg: PostgreSQL's credentials used by psql commandline tool
 
-## Start
+## Executables
 
-    To build the project:
+    To build the project (Go grab some coffee if it is your first time):
     $ ./runBuild.sh <project_home_folder> <cabal_build arguments>
 
     Show help:
     $ .cabal-sandbox/bin/user-privileges-manager --help
 
-    To FULLY refresh all user privileges: (including remove all current privileges and update with the new privileges)
+    To FULLY refresh all user privileges: (including remove all current privileges 
+    and update with the new privileges)
     $ .cabal-sandbox/bin/user-privileges-manager fullupdatemode
 
     To refresh all user privileges:
