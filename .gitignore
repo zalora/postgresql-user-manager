@@ -3,4 +3,3 @@
 /dist/
 credentials.cfg
 psql.cnf
-.DS_Store

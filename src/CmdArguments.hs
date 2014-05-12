@@ -21,7 +21,7 @@ data MyOptions = UpdateMode{schemaName :: Maybe String}
 updateMode :: MyOptions
 updateMode = UpdateMode
     { schemaName = Nothing &= help "SCHEMA_PATTERN"
-    }
+    }
     &= details  [ "Examples:"
                 , "    .cabal-sandbox/bin/user-privileges-manager updatemode -s schema_pattern"
                 ]
