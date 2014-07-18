@@ -1,7 +1,7 @@
 postgresql-user-manager
 =======================
 
-To *functionally* manage User Privileges for PostgreSQL Database.
+A command-line interface tool to *functionally* manage User Privileges for Amazon Redshift or any PostgreSQL Database.
 
 Allow administrator to easily:
 
