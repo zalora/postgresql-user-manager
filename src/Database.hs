@@ -21,18 +21,22 @@ type Query = String
 grantQuery :: GrantType -> Username -> [DBObject] -> PermissionType -> Query
 grantQuery grant username objects permission  -- for Views grantting need TO NOT have granttype.
     | null objects = ""
-    | grant == VIEW = "GRANT "  ++ permission ++ " ON " ++  intercalate ", " objects ++ " TO " ++ username ++ ";"
-    | otherwise = "GRANT "  ++ permission ++ " ON " ++ show grant ++ " " ++  intercalate ", " objects ++ " TO " ++ username ++ ";"
+    | grant == VIEW =
+        "BEGIN; GRANT " ++ permission ++ " ON " ++  intercalate ", " objects ++ " TO " ++ username ++ "; COMMIT;"
+    | otherwise =
+        "BEGIN; GRANT " ++ permission ++ " ON " ++ show grant ++ " " ++  intercalate ", " objects ++ " TO " ++ username ++ "; COMMIT;"
 
 revokeQuery :: GrantType -> Username -> [DBObject] -> PermissionType -> Query
 revokeQuery grant username objects permission -- for Views grantting need TO NOT have granttype.
     | null objects = ""
-    | grant == VIEW = "REVOKE " ++ permission ++ " ON " ++  intercalate ", " objects ++ " FROM " ++ username ++ ";"
-    | otherwise = "REVOKE " ++ permission ++ " ON " ++ show grant ++ " " ++  intercalate ", " objects ++ " FROM " ++ username ++ ";"
+    | grant == VIEW =
+        "BEGIN; REVOKE " ++ permission ++ " ON " ++ intercalate ", " objects ++ " FROM " ++ username ++ "; COMMIT;"
+    | otherwise =
+        "BEGIN; REVOKE " ++ permission ++ " ON " ++ show grant ++ " " ++ intercalate ", " objects ++ " FROM " ++ username ++ "; COMMIT;"
 
 transferOwnerQuery :: GrantType -> Username -> DBObject -> Query
 transferOwnerQuery grant unameNew object =
-    "ALTER " ++ show grant ++ " " ++ object ++ " OWNER TO " ++ unameNew ++ ";"
+    "BEGIN; ALTER " ++ show grant ++ " " ++ object ++ " OWNER TO " ++ unameNew ++ "; COMMIT;"
 
 doesUserExist :: Connection -> Username -> IO Bool
 doesUserExist db uname = do
