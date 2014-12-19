@@ -1,5 +1,6 @@
 FROM ubuntu:12.04
 
+# ghc 7.6.3, cabal, happy
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /root
@@ -29,7 +30,21 @@ RUN echo "export PATH=~/.cabal/bin:$PATH" >> /root/.profile
 RUN locale-gen en_US.UTF-8
 RUN export LC_ALL='en_US.UTF-8'
 ENV LC_ALL en_US.UTF-8
-RUN cabal install -j happy
+RUN cabal install -j random happy
+
+
+# install some dependencies
+RUN apt-get install -y libpq-dev
+
+# copy code to container
+RUN mkdir -p ${HOME}/postgresql-user-manager
+COPY src ${HOME}/postgresql-user-manager/src
+COPY Postgresql-User-Manager.cabal ${HOME}/postgresql-user-manager/
+COPY Setup.hs ${HOME}/postgresql-user-manager/
+COPY LICENSE ${HOME}/postgresql-user-manager/
+WORKDIR ${HOME}/postgresql-user-manager
+RUN cabal sandbox init
+RUN cabal install
 
 EXPOSE 22
 CMD /usr/sbin/sshd -D
