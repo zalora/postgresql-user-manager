@@ -59,6 +59,7 @@ RUN apt-get install -y libpq-dev
 # copy code to container
 RUN mkdir -p ${HOME}/postgresql-user-manager
 COPY src ${HOME}/postgresql-user-manager/src
+COPY config ${HOME}/postgresql-user-manager/config
 COPY Postgresql-User-Manager.cabal ${HOME}/postgresql-user-manager/
 COPY Setup.hs ${HOME}/postgresql-user-manager/
 COPY LICENSE ${HOME}/postgresql-user-manager/
