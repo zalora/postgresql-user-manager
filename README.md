@@ -36,7 +36,9 @@ Allow administrator to easily:
     $ cd postgresql-user-manager/
     $ sudo docker build -t="postgresql-user-privileges" .
 
-## Executables (to run with Docker: use `docker run postgresql-user-manager` as a prefix for the below commands)
+## Executables
+
+(To run with Docker: use `docker run postgresql-user-manager` as a prefix for the below commands)
 
     Show help
     $ .cabal-sandbox/bin/user-privileges-manager --help
