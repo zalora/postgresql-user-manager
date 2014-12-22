@@ -34,7 +34,7 @@ Allow administrator to easily:
 
     Build with Docker (remember to configure your credentials first in ./config folder)
     $ cd postgresql-user-manager/
-    $ sudo docker build -t="postgresql-user-privileges" .
+    $ sudo docker build -t="postgresql-user-manager" .
 
 ## Executables
 
