@@ -23,10 +23,16 @@ Allow administrator to easily:
         - credentials.cfg: all user credentials that need to be managed
         - db.cfg: PostgreSQL's credentials used by psql commandline tool
 
-## Executables
+## Clone and build:
 
-    To build the project (Go grab some coffee if it is your first time):
-    $ ./runBuild.sh <project_home_folder> <cabal_build arguments>
+    Clone the repo:
+    $ git clone https://github.com/zalora/postgresql-user-manager.git
+
+    Build with Docker (remember to configure your credentials first in ./config folder)
+    $ cd postgresql-user-manager/
+    $ sudo docker build -t="postgresql-user-privileges" .
+
+## Executables
 
     Show help:
     $ .cabal-sandbox/bin/user-privileges-manager --help
