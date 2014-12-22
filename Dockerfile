@@ -6,9 +6,7 @@ WORKDIR /root
 RUN apt-get update
 
 # ghc 7.8.3
-RUN mkdir -p ${HOME}/.ssh/
-RUN apt-get install -y openssh-server
-RUN mkdir /var/run/sshd
+RUN apt-get install -y openssh-server # so that bootstrap.sh and wget works without --no-check-certificate (?)
 RUN apt-get install -y wget libgmp3-dev build-essential
 RUN ln -s /usr/lib/x86_64-linux-gnu/libgmp.so.10 /usr/lib/libgmp.so.3
 RUN ln -s /usr/lib/x86_64-linux-gnu/libgmp.so.10 /usr/lib/libgmp.so
@@ -59,7 +57,6 @@ RUN apt-get install -y libpq-dev
 # copy code to container
 RUN mkdir -p ${HOME}/postgresql-user-manager
 COPY src ${HOME}/postgresql-user-manager/src
-COPY config ${HOME}/postgresql-user-manager/config
 COPY Postgresql-User-Manager.cabal ${HOME}/postgresql-user-manager/
 COPY Setup.hs ${HOME}/postgresql-user-manager/
 COPY LICENSE ${HOME}/postgresql-user-manager/
@@ -67,4 +64,5 @@ WORKDIR ${HOME}/postgresql-user-manager
 RUN cabal sandbox init
 RUN cabal install
 
-
+# copy config and credendtial files
+COPY config ${HOME}/postgresql-user-manager/config

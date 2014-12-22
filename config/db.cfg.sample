@@ -2,3 +2,4 @@ host: ""
 port: 
 user: ""
 database: ""
+password: ""
