@@ -41,7 +41,7 @@ instance FromJSON ConnectInfo where
         m .: "host" <*>
         m .: "port" <*>
         m .: "user" <*>
-        (fromMaybe "" <$> (m .:? "password")) <*>
+        m .: "password" <*>
         m .: "database"
     parseJSON x = fail ("not an object: " ++ show x)
 

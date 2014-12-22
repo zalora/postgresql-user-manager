@@ -19,16 +19,26 @@ Allow administrator to easily:
 
     + Happy 1.19 or later
 
-    + Credentials files (Located in config/Credentials/):
+## Credentials:
+
+    + Credentials files (Located in ./config folder):
+
         - credentials.cfg: all user credentials that need to be managed
-        - db.cfg: PostgreSQL's credentials used by psql commandline tool
+        - db.cfg: PostgreSQL's credentials used by psql command-line tool
+        - privileges.cfg: all user privileges.
 
-## Executables
+## Clone and build:
 
-    To build the project (Go grab some coffee if it is your first time):
-    $ ./runBuild.sh <project_home_folder> <cabal_build arguments>
+    Clone the repo:
+    $ git clone https://github.com/zalora/postgresql-user-manager.git
 
-    Show help:
+    Build with Docker (remember to configure your credentials first in ./config folder)
+    $ cd postgresql-user-manager/
+    $ sudo docker build -t="postgresql-user-privileges" .
+
+## Executables (to run with Docker: use `docker run postgresql-user-manager` as a prefix for the below commands)
+
+    Show help
     $ .cabal-sandbox/bin/user-privileges-manager --help
 
     To FULLY refresh all user privileges: (including remove all current privileges 

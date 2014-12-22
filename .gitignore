@@ -2,4 +2,5 @@
 /cabal.sandbox.config
 /dist/
 credentials.cfg
-psql.cnf
+db.cfg
+privileges.cfg

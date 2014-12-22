@@ -19,7 +19,7 @@ executable user-privileges-manager
   main-is:           UserPrivilegesManager.hs
   hs-source-dirs:    src
   build-depends:
-    base >=4.6 && <4.7,
+    base >=4.6,
     postgresql-libpq >=0.8 && <0.9,
     postgresql-simple >=0.3 && <0.4,
     containers >=0.5 && <0.6,
