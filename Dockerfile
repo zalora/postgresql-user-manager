@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM ubuntu:14.04
 
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
@@ -55,14 +55,14 @@ RUN cabal install -j happy
 RUN apt-get install -y libpq-dev
 
 # copy code to container
-RUN mkdir -p ${HOME}/postgresql-user-manager
-COPY src ${HOME}/postgresql-user-manager/src
-COPY Postgresql-User-Manager.cabal ${HOME}/postgresql-user-manager/
-COPY Setup.hs ${HOME}/postgresql-user-manager/
-COPY LICENSE ${HOME}/postgresql-user-manager/
-WORKDIR ${HOME}/postgresql-user-manager
+RUN mkdir -p /root/postgresql-user-manager
+COPY src /root/postgresql-user-manager/src
+COPY Postgresql-User-Manager.cabal /root/postgresql-user-manager/
+COPY Setup.hs /root/postgresql-user-manager/
+COPY LICENSE /root/postgresql-user-manager/
+WORKDIR /root/postgresql-user-manager
 RUN cabal sandbox init
 RUN cabal install
 
 # copy config and credendtial files
-COPY config ${HOME}/postgresql-user-manager/config
+COPY config /root/postgresql-user-manager/config
